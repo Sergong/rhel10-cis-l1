@@ -1,0 +1,13 @@
+---
+- name: Configuration and management of GRUB2 boot loader
+  hosts: all
+  tasks:
+    - name: Gather information about the boot loader configuration
+      ansible.builtin.include_role:
+        name: redhat.rhel_system_roles.bootloader
+      vars:
+        bootloader_gather_facts: true
+
+    - name: Display the collected boot loader configuration information
+      debug:
+        var: bootloader_facts

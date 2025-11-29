@@ -1,0 +1,14 @@
+---
+- name: Configuration and management of GRUB2 boot loader
+  hosts: all
+  become: true
+  vars_files:
+    - ~/vault.yml
+  tasks:
+    - name: Set the bootloader password
+      ansible.builtin.include_role:
+        name: redhat.rhel_system_roles.bootloader
+      vars:
+        bootloader_password: "{{ pwd }}"
+        bootloader_reboot_ok: true
+
